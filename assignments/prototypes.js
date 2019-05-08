@@ -41,12 +41,16 @@ function CharacterStats (stats) {
   this.healthPoints = stats.healthPoints;
 };
 
+// to inherit from GameObject prototypes;
+CharacterStats.prototype = Object.create(GameObject.prototype); 
 // Prototyping the methode takeDamage
 CharacterStats.prototype.takeDamage = function(){
   return `${this.name} took damage.`;
 };
-// to inherit from GameObject prototypes;
-CharacterStats.prototype = Object.create(GameObject.prototype); 
+
+//const Test = new CharacterStats ({createdAt: 'May 2019', name: 'Haja', dimensions: '16 x2', healthPoints: '120'});
+//console.log(Test.takeDamage());
+
 
 /*
   === Humanoid (Having an appearance or character resembling that of a human.) ===
@@ -72,12 +76,14 @@ function Humanoid(attr){
   
 };
 
+
+// to inherit from CharacterStats prototypes;
+Humanoid.prototype = Object.create(CharacterStats.prototype);
+
 Humanoid.prototype.greet = function (){
   return `${this.name} offers a greeting in ${this.language}`
 }
 
-// to inherit from CharacterStats prototypes;
-Humanoid.prototype = Object.create(CharacterStats.prototype);
 
 // Test you work by un-commenting these 3 objects and the list of console logs below:
 
@@ -138,10 +144,8 @@ Humanoid.prototype = Object.create(CharacterStats.prototype);
   console.log(swordsman.team); // The Round Table
   console.log(mage.weapons); // Staff of Shamalama
   console.log(archer.language); // Elvish
-  console.log(archer);
-  console.log(archer.prototype);
   console.log(archer.greet()); // Lilith offers a greeting in Elvish.
-  //console.log(mage.takeDamage()); // Bruce took damage.
+  console.log(mage.takeDamage()); // Bruce took damage.
   console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
 
 
